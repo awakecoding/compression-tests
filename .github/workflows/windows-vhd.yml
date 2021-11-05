@@ -7,22 +7,21 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        ztype: [ 'xz', 'gzip', 'zip' ]
+        ztype: [ 'xz', 'gzip' ]
 
         include:
           - ztype: xz
             zext: xz
           - ztype: gzip
             zext: gz
-          - ztype: zip
-            zext: zip
 
     steps:
       - name: Configure runner
         run: |
-          docker system prune -a
+          docker system prune -a -f
           $VSINSTALLDIR = $(vswhere.exe -latest -property installationPath)
           Remove-Item $VSINSTALLDIR -Recurse -Force
+          Get-Volume
 
       - name: Download VHD file
         shell: pwsh
