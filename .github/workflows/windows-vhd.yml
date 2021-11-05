@@ -20,7 +20,7 @@ jobs:
     steps:
       - name: Configure runner
         run: |
-          choco install 7zip
+          docker system prune -a
           $VSINSTALLDIR = $(vswhere.exe -latest -property installationPath)
           Remove-Item $VSINSTALLDIR -Recurse -Force
 
