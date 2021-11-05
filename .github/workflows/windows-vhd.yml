@@ -21,6 +21,8 @@ jobs:
       - name: Configure runner
         run: |
           choco install 7zip
+          $VSINSTALLDIR = $(vswhere.exe -latest -property installationPath)
+          Remove-Item $VSINSTALLDIR -Recurse -Force
 
       - name: Download VHD file
         shell: pwsh
